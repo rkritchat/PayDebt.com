@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLOutput;
 import java.util.List;
 
 @Service
@@ -51,7 +50,6 @@ public class UserService {
     }
 
     public boolean isUsernameExist(String username) {
-        System.out.println("COMHERTETETE");
         return userRepository.findByUsername(username) == null ? false:true;
     }
 
