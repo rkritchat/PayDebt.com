@@ -1,5 +1,7 @@
 package com.gravity.paydebt.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,6 +9,7 @@ import javax.persistence.*;
 public class UserInfo {
 
     @Id
+    @Length(max = 15)
     private String username;
     @Column(name = "first_name")
     private String firstName;

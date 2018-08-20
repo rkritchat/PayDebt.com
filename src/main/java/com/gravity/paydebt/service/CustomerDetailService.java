@@ -1,9 +1,7 @@
 package com.gravity.paydebt.service;
 
-import com.gravity.paydebt.model.UserInfo;
 import com.gravity.paydebt.model.UserPwd;
-import com.gravity.paydebt.repository.UserPwdRepository;
-import com.gravity.paydebt.repository.UserRepository;
+import com.gravity.paydebt.repository.user.UserPwdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;

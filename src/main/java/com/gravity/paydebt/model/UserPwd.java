@@ -1,5 +1,7 @@
 package com.gravity.paydebt.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -8,6 +10,7 @@ import javax.persistence.Table;
 @Table(name = "user_pwd")
 public class UserPwd {
     @Id
+    @Length(max = 15)
     private String username;
     private String password;
     private String role;

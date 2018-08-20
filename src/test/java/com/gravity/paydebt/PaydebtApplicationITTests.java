@@ -1,10 +1,8 @@
 package com.gravity.paydebt;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.gravity.paydebt.model.UserInfo;
 import com.gravity.paydebt.model.UserPwd;
-import com.gravity.paydebt.repository.UserRepository;
 import com.gravity.paydebt.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
