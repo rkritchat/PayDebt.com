@@ -9,10 +9,8 @@ import java.util.Date;
 @Table(name="debt_detail")
 public class DebtDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id", nullable = false)
-    @Length(max = 5)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name="debtor_id")
     @Length(max = 15)
@@ -28,7 +26,6 @@ public class DebtDetail {
     @Column(name="create_date")
     private Date createDate;
 
-    @Length(min = 1, max = 1)
     private int status;
 
     public DebtDetail() {
@@ -43,59 +40,79 @@ public class DebtDetail {
         this.status = status;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public DebtDetail setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getDebtorId() {
         return debtorId;
     }
 
-    public void setDebtorId(String debtorId) {
+    public DebtDetail setDebtorId(String debtorId) {
         this.debtorId = debtorId;
+        return this;
     }
 
     public String getCreditorId() {
         return creditorId;
     }
 
-    public void setCreditorId(String creditorId) {
+    public DebtDetail setCreditorId(String creditorId) {
         this.creditorId = creditorId;
+        return this;
     }
 
     public double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public DebtDetail setAmount(double amount) {
         this.amount = amount;
+        return this;
     }
 
     public String getDetail() {
         return detail;
     }
 
-    public void setDetail(String detail) {
+    public DebtDetail setDetail(String detail) {
         this.detail = detail;
+        return this;
     }
 
     public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public DebtDetail setCreateDate(Date createDate) {
         this.createDate = createDate;
+        return this;
     }
 
     public int getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public DebtDetail setStatus(int status) {
         this.status = status;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "DebtDetail{" +
+                "id=" + id +
+                ", debtorId='" + debtorId + '\'' +
+                ", creditorId='" + creditorId + '\'' +
+                ", amount=" + amount +
+                ", detail='" + detail + '\'' +
+                ", createDate=" + createDate +
+                ", status=" + status +
+                '}';
     }
 }
