@@ -36,11 +36,22 @@ public class UserService {
     }
 
     public ResponseEntity<UserInfo> updateUserInfo(UserInfo userInfo) {
-        userRepository.save(userInfo);
+        if (isUsernameExist(userInfo.getUsername())) {
+            userRepository.save(userInfo);
+            userInfo = userRepository.findByUsername(userInfo.getUsername());
+        }else{
+            userInfo = null;
+        }
         return new ResponseEntity<>(userInfo, HttpStatus.OK);
     }
 
     public ResponseEntity<UserPwd> updateUserPwd(UserPwd userPwd) {
+        if (isUsernameExist(userPwd.getUsername())) {
+            userPwdRepository.save(userPwd);
+            userPwd = userPwdRepository.findByUsername(userPwd.getUsername());
+        }else{
+            userPwd = null;
+        }
         return new ResponseEntity<>(userPwd, HttpStatus.OK);
     }
 
