@@ -12,18 +12,18 @@ public class DebtDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="debtor_id")
+    @Column(name="debtor_ref")
     @Length(max = 15)
-    private String debtorId;
+    private String debtorReference;
 
-    @Column(name="creditor_id")
+    @Column(name="creditor_ref")
     @Length(max = 15)
-    private String creditorId;
+    private String creditorReference;
 
     private double amount;
-    private String detail;
+    private String description;
 
-    @Column(name="create_date")
+    @Column(name="create_date",columnDefinition = "DATETIME")
     private Date createDate;
 
     private int status;
@@ -31,11 +31,11 @@ public class DebtDetail {
     public DebtDetail() {
     }
 
-    public DebtDetail(String debtorId, String creditorId, double amount, String detail, Date createDate, @Length(min = 1, max = 1) int status) {
-        this.debtorId = debtorId;
-        this.creditorId = creditorId;
+    public DebtDetail(String debtorReference, String creditorReference, double amount, String description, Date createDate, @Length(min = 1, max = 1) int status) {
+        this.debtorReference = debtorReference;
+        this.creditorReference = creditorReference;
         this.amount = amount;
-        this.detail = detail;
+        this.description = description;
         this.createDate = createDate;
         this.status = status;
     }
@@ -49,21 +49,21 @@ public class DebtDetail {
         return this;
     }
 
-    public String getDebtorId() {
-        return debtorId;
+    public String getDebtorReference() {
+        return debtorReference;
     }
 
-    public DebtDetail setDebtorId(String debtorId) {
-        this.debtorId = debtorId;
+    public DebtDetail setDebtorReference(String debtorReference) {
+        this.debtorReference = debtorReference;
         return this;
     }
 
-    public String getCreditorId() {
-        return creditorId;
+    public String getCreditorReference() {
+        return creditorReference;
     }
 
-    public DebtDetail setCreditorId(String creditorId) {
-        this.creditorId = creditorId;
+    public DebtDetail setCreditorReference(String creditorReference) {
+        this.creditorReference = creditorReference;
         return this;
     }
 
@@ -76,12 +76,12 @@ public class DebtDetail {
         return this;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getDescription() {
+        return description;
     }
 
-    public DebtDetail setDetail(String detail) {
-        this.detail = detail;
+    public DebtDetail setDescription(String description) {
+        this.description = description;
         return this;
     }
 
@@ -107,10 +107,10 @@ public class DebtDetail {
     public String toString() {
         return "DebtDetail{" +
                 "id=" + id +
-                ", debtorId='" + debtorId + '\'' +
-                ", creditorId='" + creditorId + '\'' +
+                ", debtorId='" + debtorReference + '\'' +
+                ", creditorId='" + creditorReference + '\'' +
                 ", amount=" + amount +
-                ", detail='" + detail + '\'' +
+                ", description='" + description + '\'' +
                 ", createDate=" + createDate +
                 ", status=" + status +
                 '}';

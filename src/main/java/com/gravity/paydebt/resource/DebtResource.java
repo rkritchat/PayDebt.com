@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/debt")
 public class DebtResource {
@@ -20,4 +22,10 @@ public class DebtResource {
     public ResponseEntity<String> create(@RequestBody DebtDetail debtDetail) {
         return debtService.createDebt(debtDetail);
     }
+
+    @PostMapping("/detail")
+    public ResponseEntity<List<DebtDetail>> getDebtDetail(@RequestBody DebtDetail debtDetail) {
+        return debtService.getDebtDetail(debtDetail);
+    }
+
 }
