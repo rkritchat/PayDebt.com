@@ -107,8 +107,8 @@ public class DebtDetail {
     public String toString() {
         return "DebtDetail{" +
                 "id=" + id +
-                ", debtorId='" + debtorReference + '\'' +
-                ", creditorId='" + creditorReference + '\'' +
+                ", debtorReference='" + debtorReference + '\'' +
+                ", creditorReference='" + creditorReference + '\'' +
                 ", amount=" + amount +
                 ", description='" + description + '\'' +
                 ", createDate=" + createDate +

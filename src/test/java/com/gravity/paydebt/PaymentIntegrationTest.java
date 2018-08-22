@@ -5,6 +5,7 @@ import com.gravity.paydebt.model.DebtDetail;
 import com.gravity.paydebt.model.PaymentDetail;
 import com.gravity.paydebt.model.TransactionDetail;
 import com.gravity.paydebt.repository.debt.DebtRepository;
+import com.gravity.paydebt.repository.payment.PaymentRepository;
 import com.gravity.paydebt.repository.payment.TransactionRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +20,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.Date;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
@@ -35,8 +35,10 @@ public class PaymentIntegrationTest {
     @Autowired
     private DebtRepository debtRepository;
 
-    private long debtReference = 0;
+    @Autowired
+    private PaymentRepository paymentRepository;
 
+    private long debtReference = 0;
     private Gson gson = new Gson();
 
     @Before
@@ -50,10 +52,15 @@ public class PaymentIntegrationTest {
         debtReference = debtRepository.findByDebtorReference("kritchat").get(0).getId();
     }
 
+    @Before
+    public void createPayment() {
+        PaymentDetail paymentDetail = mockBean("kritchat",2L,100).setTransactionRef(5L);
+        paymentRepository.save(paymentDetail);
+    }
 
     @Test
     public void pay() throws Exception{
-        PaymentDetail paymentDetail = mockBean();
+        PaymentDetail paymentDetail = mockBean("kritchat",debtReference,200);
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/payment/pay")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -63,12 +70,22 @@ public class PaymentIntegrationTest {
          .andExpect(MockMvcResultMatchers.content().string("Payment Done."));
     }
 
-    private PaymentDetail mockBean() {
+    @Test
+    public void getPaymentFromDebtorId() throws Exception{
+        DebtDetail debtDetail = new DebtDetail().setDebtorReference("kritchat").setStatus(0);
+        mockMvc.perform(MockMvcRequestBuilders.post("/payment/detail")
+                .content(gson.toJson(debtDetail))
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.status().isOk())
+         .andExpect(MockMvcResultMatchers.jsonPath("$[0].username").value("kritchat"));
+    }
+
+    private PaymentDetail mockBean(String username, Long debtReference, double amtPaid) {
        return new PaymentDetail()
-                .setUsername("rkritchat")
+                .setUsername(username)
                 .setDebtRef(debtReference)
                 .setAmount(500.00)
-                .setAmountPaid(500.00)
+                .setAmountPaid(amtPaid)
                 .setDescription("For Food")
                 .setStatus(0);
     }
