@@ -1,23 +1,25 @@
 package com.gravity.paydebt.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Transaction {
+public class TransactionDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    private String status;
+    private int status;
     @Column(name = "transaction_date",columnDefinition = "DATETIME")
     private Date transactionDate;
 
-    public Transaction() {
+    public TransactionDetail() {
     }
 
-    public Transaction(String description, String status, Date transactionDate) {
+    public TransactionDetail(String description, int status, Date transactionDate) {
         this.description = description;
         this.status = status;
         this.transactionDate = transactionDate;
@@ -39,11 +41,11 @@ public class Transaction {
         this.description = description;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
