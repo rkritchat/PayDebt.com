@@ -51,7 +51,6 @@ public class PaymentService {
                 result.add(tmp);
             }
         });
-        debtRepository.findAll().forEach(System.out::println);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
