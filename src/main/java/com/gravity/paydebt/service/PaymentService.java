@@ -78,8 +78,8 @@ public class PaymentService {
                     .setDebtorReference(paymentDetail.getUsername())
             );
             DebtDetail debtDetail = debtRepository.findById(paymentDetail.getDebtRef());
-            double remainingAmt = receiptRepository.getRemainingAmount(paymentDetail.getDebtRef());
-            if (remainingAmt == paymentDetail.getAmountPaid()) {
+            double totalAmountPaid = receiptRepository.getTotalAmountPaid(paymentDetail.getDebtRef());
+            if (totalAmountPaid == debtDetail.getAmount()) {
                 debtDetail.setStatus(1);
                 debtRepository.save(debtDetail);
             }

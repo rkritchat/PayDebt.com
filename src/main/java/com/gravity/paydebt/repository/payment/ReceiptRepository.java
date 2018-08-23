@@ -7,5 +7,5 @@ import org.springframework.data.repository.query.Param;
 
 public interface ReceiptRepository extends JpaRepository<ReceiptDetail,Integer> {
     @Query("SELECT COALESCE(SUM(r.amout),0) FROM ReceiptDetail r WHERE r.debtReference =:debtReference")
-    double getRemainingAmount(@Param("debtReference") long debtReference);
+    double getTotalAmountPaid(@Param("debtReference") long debtReference);
 }

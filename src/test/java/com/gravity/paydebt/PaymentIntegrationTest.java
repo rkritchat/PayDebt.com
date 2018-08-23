@@ -85,7 +85,7 @@ public class PaymentIntegrationTest {
         mockMvc.perform(MockMvcRequestBuilders
                 .post("/payment/confirm")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(gson.toJson(mockBean("kritchat",debtReference,200)))
+                .content(gson.toJson(mockBean("kritchat",debtReference,500).setStatus(1)))
         ).andExpect(MockMvcResultMatchers.status().isOk());
 
     }
