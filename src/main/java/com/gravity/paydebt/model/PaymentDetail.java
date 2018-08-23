@@ -1,5 +1,7 @@
 package com.gravity.paydebt.model;
 
+import org.springframework.http.ResponseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -108,4 +110,5 @@ public class PaymentDetail {
         this.paymentDate = paymentDate;
         return this;
     }
+
 }

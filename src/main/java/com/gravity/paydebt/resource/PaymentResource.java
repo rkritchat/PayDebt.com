@@ -33,4 +33,10 @@ public class PaymentResource {
     public ResponseEntity<List<PaymentDetail>> getPaymentDetail(@RequestBody DebtDetail debtDetail) {
         return paymentService.getPaymentDetail(debtDetail);
     }
+
+    @PostMapping("/confirm")
+    public ResponseEntity<String> confirmPayment(@RequestBody PaymentDetail paymentDetail) {
+        return paymentService.confirmPayment(paymentDetail);
+
+    }
 }

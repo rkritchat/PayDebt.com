@@ -8,5 +8,5 @@ import java.util.List;
 public interface DebtRepository extends JpaRepository<DebtDetail,Integer> {
     List<DebtDetail> findByDebtorReference(String debtorId);
 
-
+    DebtDetail findById(Long id);
 }

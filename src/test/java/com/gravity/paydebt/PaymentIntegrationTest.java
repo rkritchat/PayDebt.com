@@ -80,6 +80,16 @@ public class PaymentIntegrationTest {
          .andExpect(MockMvcResultMatchers.jsonPath("$[0].username").value("kritchat"));
     }
 
+    @Test
+    public void confirmPayment() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/payment/confirm")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(gson.toJson(mockBean("kritchat",debtReference,200)))
+        ).andExpect(MockMvcResultMatchers.status().isOk());
+
+    }
+
     private PaymentDetail mockBean(String username, Long debtReference, double amtPaid) {
        return new PaymentDetail()
                 .setUsername(username)
